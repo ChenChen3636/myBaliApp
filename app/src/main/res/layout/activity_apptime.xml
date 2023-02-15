@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/permission_description_tv"
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textAlignment="center"
+        android:text="@string/permission_description" />
+
+    <Button
+        android:id="@+id/enable_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#4285f4"
+        android:text="@string/setting_permission"
+        android:textColor="#212121" />
+
+    <Button
+        android:id="@+id/show_btn"
+        android:visibility="gone"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:textColor="#fff"
+        android:background="#4285f4"
+        android:layout_height="wrap_content"
+        android:text="@string/show_result" />
+
+    <TextView
+        android:id="@+id/usage_tv"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:padding="20dp"
+        android:text="過去24小時應用程式使用數據" />
+
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/apps_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/btn_appIntentBackToHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goBack"
+        android:text="返回" />
+</LinearLayout>
