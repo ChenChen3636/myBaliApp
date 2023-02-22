@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyBali</string>
+    <string name="app_name">Moodee</string>
     <string name="show_result">顯示應用程式使用時間</string>
     <string name="permission_description">請在應用程式設定中開啟使用者權限，開啟後才能顯示應用程式使用時間紀錄。</string>
     <string name="setting_permission">點擊設定使用者權限</string>
