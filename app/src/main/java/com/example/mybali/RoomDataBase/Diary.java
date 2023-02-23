@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "MyDiaries")
-public class Diaries {
+@Entity
+public class Diary {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -19,27 +19,17 @@ public class Diaries {
     @ColumnInfo(name = "content")
     private String content;
 
-    public Diaries(int score, String tag, String content){
+    public Diary(int score, String tag, String content){
         this.score = score;
         this.tag = tag;
         this.content = content;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public int getId() {
-
         return id;
     }
 
     public void setId(int id) {
-
         this.id = id;
     }
 
@@ -48,17 +38,22 @@ public class Diaries {
     }
 
     public void setScore(int score) {
-
         this.score = score;
     }
 
     public String getTag() {
-
         return tag;
     }
 
     public void setTag(String tag) {
-
         this.tag = tag;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

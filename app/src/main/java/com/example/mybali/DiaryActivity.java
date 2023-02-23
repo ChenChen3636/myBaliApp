@@ -5,18 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.mybali.RoomDataBase.Diaries;
 import com.facebook.stetho.Stetho;
 
-import java.util.ArrayList;
-
-public class DiaryActivity<Diary> extends AppCompatActivity {
+public class DiaryActivity extends AppCompatActivity {
 
 
 //    DiaryAdapter diaryAdapter;
@@ -39,7 +35,6 @@ public class DiaryActivity<Diary> extends AppCompatActivity {
 
         setView();
         setListener();
-
 
     }
 

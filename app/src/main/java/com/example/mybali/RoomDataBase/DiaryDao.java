@@ -6,29 +6,26 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
+
 import java.util.List;
 
-import com.example.mybali.Diary;
-import com.google.android.material.color.utilities.Score;
-
-@Dao //Database access object
-public interface DiariesDao {
-
-    String tableName = "MyDiaries";
+@Dao
+public interface DiaryDao {
     /*============================================================================================*/
     //新增資料
     @Insert(onConflict = OnConflictStrategy.REPLACE)//預設萬一執行出錯怎麼辦，REPLACE為覆蓋
-    void insertData(Diaries diaries);
+    void insertData(Diary... diaries);
     //更新資料
     @Update
-    void updateData(Diaries diaries);
+    void updateData(Diary... diaries);
     //刪除資料
     @Delete
-    void deleteData(Diaries diaries);
+    void deleteData(Diary... diaries);
     //清空
-    @Query("DELETE FROM " + tableName)
+    @Query("DELETE FROM diary")
     void deleteAllScore();
     //撈取全部資料
-    @Query("SELECT * FROM "+ tableName)
-    List<Diaries> displayAll();
+    @Query("SELECT * FROM diary")
+    List<Diary> displayAll();
+
 }
