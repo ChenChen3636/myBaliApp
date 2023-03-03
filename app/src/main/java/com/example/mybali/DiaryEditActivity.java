@@ -4,30 +4,44 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mybali.RoomDataBase.Diary;
+import com.example.mybali.RoomDataBase.DiaryDatabase;
+import com.facebook.stetho.Stetho;
+
 public class DiaryEditActivity extends AppCompatActivity {
 
-    Button btn_save;
+    private Button btn_save;
+    private EditText titleInput,descriptionInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_edit);
-
-        //Demo用，儲存後先跳轉回日記主頁
+        titleInput = findViewById(R.id.titleInput);
+        descriptionInput = findViewById(R.id.descriptionInput);
         btn_save = findViewById(R.id.save_button);
 
-        btn_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(DiaryEditActivity.this,DiaryActivity.class);
-                startActivity(intent);
-            }
-        });
+        //---------------------要用的------------
+        btn_save.setOnClickListener((v -> {
+            new Thread(() -> {
+                String title = titleInput.getText().toString();
+                String description = descriptionInput.getText().toString();
+                long createdTime = System.currentTimeMillis();
+
+                if (title.length() == 0 || description.length() == 0) return;
+                Diary diary = new Diary(title,description,createdTime);
+                DiaryDatabase.getInstance(this).getDiaryDao().insertData(diary);
+                runOnUiThread(() -> {
+                    titleInput.setText("");
+                    descriptionInput.setText("");
+                });
+            }).start();
+        }));
     }
 
 

@@ -25,14 +25,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //stetho初始化
-        Stetho.initializeWithDefaults(this);
+        Stetho.initializeWithDefaults(this);//設置資料庫監視
+
         new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();
+
+
+
         btn_location = (Button) findViewById(R.id.btn_location);
         btn_apptime = (Button) findViewById(R.id.btn_app);
         btn_diary = (Button) findViewById(R.id.btn_diary);
+
+
         btn_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         btn_apptime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         btn_diary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

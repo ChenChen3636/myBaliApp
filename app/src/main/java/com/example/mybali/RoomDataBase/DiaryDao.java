@@ -11,21 +11,23 @@ import java.util.List;
 
 @Dao
 public interface DiaryDao {
+
+    String tableName = "DiaryTable";
     /*============================================================================================*/
     //新增資料
     @Insert(onConflict = OnConflictStrategy.REPLACE)//預設萬一執行出錯怎麼辦，REPLACE為覆蓋
-    void insertData(Diary... diaries);
+    void insertData(Diary diaries);
     //更新資料
     @Update
-    void updateData(Diary... diaries);
+    void updateData(Diary diaries);
     //刪除資料
     @Delete
-    void deleteData(Diary... diaries);
+    void deleteData(Diary diaries);
     //清空
-    @Query("DELETE FROM diary")
+    @Query("DELETE FROM DiaryTable")
     void deleteAllScore();
     //撈取全部資料
-    @Query("SELECT * FROM diary")
+    @Query("SELECT * FROM DiaryTable")
     List<Diary> displayAll();
 
 }

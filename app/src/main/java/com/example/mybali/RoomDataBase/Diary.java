@@ -2,29 +2,39 @@ package com.example.mybali.RoomDataBase;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "DiaryTable")
 public class Diary {
+
+    public Diary(String title,String description,long createdTime){
+        this.title = title;
+        this.description = description;
+        this.createdTime = createdTime;
+    }
+
+    @Ignore
+    public Diary(int id,String title,String description,long createdTime){
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.createdTime = createdTime;
+    }
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "mood_score")
-    private int score;
+    @ColumnInfo(name = "title")
+    private String title;
 
-    @ColumnInfo(name = "activity_tag")
-    private String tag;
+    @ColumnInfo(name = "description")
+    private String description;
 
-    @ColumnInfo(name = "content")
-    private String content;
+    @ColumnInfo(name = "createdTime")
+    private long createdTime;
 
-    public Diary(int score, String tag, String content){
-        this.score = score;
-        this.tag = tag;
-        this.content = content;
-    }
-
+//-----------------getter and setter--------------------------------------------
     public int getId() {
         return id;
     }
@@ -33,27 +43,29 @@ public class Diary {
         this.id = id;
     }
 
-    public int getScore() {
-        return score;
+    public String getTitle() {
+        return title;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getTag() {
-        return tag;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getContent() {
-        return content;
+    public long getCreatedTime() {
+        return createdTime;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCreatedTime(long createdTime) {
+        this.createdTime = createdTime;
     }
+
+
 }

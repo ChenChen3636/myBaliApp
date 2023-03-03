@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/palegoldenrod"
     android:padding="20dp">
     <LinearLayout
         android:id="@+id/score_layout"
@@ -197,14 +198,38 @@
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
                 android:text="電動"/>
+
         </LinearLayout>
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="米米，今天想說些什麼呢?"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_corner">
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="米米，今天想說些什麼呢?"/>
+                android:id="@+id/titleInput"
+                android:hint="標題"
+                android:background="@color/beige"
+                android:padding="10dp"
+                android:layout_margin="10dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/descriptionInput"
+                android:hint="詳細內容"
+                android:background="@color/beige"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:lines="10"
+                android:gravity="top"/>
+
 
         </LinearLayout>
     </LinearLayout>
@@ -226,30 +251,9 @@
             android:gravity="center"
             android:text="儲存"
             android:textColor="#ffffffff"
+            android:background="@color/peru"
             android:textSize="18sp" />
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/score_layout"
-        android:layout_above="@+id/button_layout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
-        android:background="@color/khaki"
-        android:orientation="vertical"
-        android:paddingLeft="25dp"
-        android:paddingTop="5dp"
-        android:paddingRight="25dp"
-        android:paddingBottom="5dp">
 
-        <LinearLayout
-            android:id="@+id/content_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-        </LinearLayout>
-
-    </ScrollView>
 </RelativeLayout>

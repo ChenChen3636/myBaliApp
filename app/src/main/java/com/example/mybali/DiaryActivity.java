@@ -1,6 +1,7 @@
 package com.example.mybali;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,13 +11,14 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.mybali.RoomDataBase.Diary;
 import com.facebook.stetho.Stetho;
 
 public class DiaryActivity extends AppCompatActivity {
 
 
 //    DiaryAdapter diaryAdapter;
-//    Diaries nowSelectData; //取得畫面上顯示中的資料內容
+//    Diary nowSelectData; //取得畫面上顯示中的資料內容
 
 
     Button btn_create_diary;
@@ -27,25 +29,15 @@ public class DiaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
-        Stetho.initializeWithDefaults(this); //設置stetho資料庫監視
-
 
         btn_create_diary = findViewById(R.id.add_diary_button);
-        diaryListView = findViewById(R.id.list_diary);
+        diaryListView = findViewById(R.id.recyclerView);
 
-        setView();
+//        DiaryAdapter diaryAdapter = new DiaryAdapter();
+//        diaryListView.setAdapter(diaryAdapter);
+
         setListener();
 
-    }
-
-    private void setView(){
-//        if(diaryDB == null){
-//            diaryDB = new DiaryDB(this);
-//        }
-//        ArrayList<Diary>diaries = diaryDB.getALLDiaries();
-
-//        DiaryAdapter diaryAdapter = new DiaryAdapter(this,diaries);
-//        diaryListView.setAdapter(diaryAdapter);
     }
 
     private void setListener(){
@@ -58,14 +50,14 @@ public class DiaryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        diaryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?>parent, View view, int position, long id) {
-//                Diary diary = (Diary)diaryListView.getItemAtPosition(position);
-//                Intent intent = new Intent();
-//                intent.setClass(DiaryActivity.this,diary);
-//                startActivity(intent);
-            }
-        });
+//        diaryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?>parent, View view, int position, long id) {
+////                Diary diary = (Diary)diaryListView.getItemAtPosition(position);
+////                Intent intent = new Intent();
+////                intent.setClass(DiaryActivity.this,diary);
+////                startActivity(intent);
+//            }
+//        });
     }
 }
