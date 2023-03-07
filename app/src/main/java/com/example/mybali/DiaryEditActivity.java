@@ -18,6 +18,7 @@ public class DiaryEditActivity extends AppCompatActivity {
     private Button btn_save;
     private EditText titleInput,descriptionInput;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,8 @@ public class DiaryEditActivity extends AppCompatActivity {
         descriptionInput = findViewById(R.id.descriptionInput);
         btn_save = findViewById(R.id.save_button);
 
-        //---------------------要用的------------
+        //========================================================================================//
+
         btn_save.setOnClickListener((v -> {
             new Thread(() -> {
                 String title = titleInput.getText().toString();
@@ -40,11 +42,15 @@ public class DiaryEditActivity extends AppCompatActivity {
                     titleInput.setText("");
                     descriptionInput.setText("");
                 });
+                //================================================================================//
+                Intent intent = new Intent();
+                intent.setClass(DiaryEditActivity.this,DiaryActivity.class);
+                startActivity(intent);
             }).start();
         }));
     }
 
-
+//==================================================================================================
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?

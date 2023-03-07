@@ -16,10 +16,12 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import okhttp3.OkHttpClient;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button btn_location,btn_apptime,btn_diary;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

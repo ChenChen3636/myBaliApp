@@ -21,16 +21,17 @@ import java.util.List;
 public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
 
     private Activity activity;
+    private Context context;
     private List<Diary> diary;
-    private AdapterView.OnItemClickListener onItemClickListener;
+    private OnItemClickListener onItemClickListener;
 
 
-    public DiaryAdapter(Activity activity,List<Diary> diary){
-        this.activity = activity;
+    public DiaryAdapter(Context context,List<Diary> diary){
+        this.context = context;
         this.diary = diary;
     }
 
-    public void setOnItemClickListener(AdapterView.OnItemClickListener onItemClickListener){
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -48,12 +49,12 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
         }
     }
 
-
+//================================================================================================//
     //更新資料
     public void refreshView(){
         new Thread(()->{
-            List<Diary> diaries = DiaryDatabase.getInstance(activity).getDiaryDao().displayAll();
-            this.diary = diaries;
+            List<Diary> data = DiaryDatabase.getInstance(activity).getDiaryDao().displayAll();
+            this.diary = data;
             activity.runOnUiThread(()->{
                 notifyDataSetChanged();
             });
@@ -61,16 +62,16 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
     }
 
     //刪除資料
-//    public void deleteData(int positon){
+//    public void deleteData(int position){
 //        new Thread(()->{
-//           DiaryDatabase.getInstance(activity).getDiaryDao().deleteData(diary.get(positon).getId());
+//           DiaryDatabase.getInstance(activity).getDiaryDao().deleteData(diary.get(position).getId());
 //           activity.runOnUiThread(()->{
-//               notifyItemRemoved(positon);
+//               notifyItemRemoved(position);
 //               refreshView();
 //           });
 //        }).start();
 //    }
-
+//================================================================================================//
 
     @NonNull
     @Override
@@ -85,12 +86,11 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
         holder.descriptionOutput.setText(diary.get(position).getDescription());
 
         //轉換時間
-        String formatedTime = DateFormat.getDateTimeInstance().format(diary.get(position).getCreatedTime());
-        holder.timeOutput.setText(formatedTime);
+        String formatTime = DateFormat.getDateTimeInstance().format(diary.get(position).getCreatedTime());
+        holder.timeOutput.setText(formatTime);
 //
         holder.itemView.setOnClickListener((v)->{
 //            onItemClickListener.onItemClick(diary.get(position));
-
         });
     }
 
@@ -99,10 +99,10 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
         return diary.size();
     }
 
+//================================================================================================//
     //建立對外接口
     public interface OnItemClickListener{
         void onItemClick(Diary diary);
     }
-
 
 }

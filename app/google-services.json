@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "364565532230",
+    "firebase_url": "https://balidb-default-rtdb.firebaseio.com",
+    "project_id": "balidb",
+    "storage_bucket": "balidb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364565532230:android:bcdbb1a22aa797c1ae0447",
+        "android_client_info": {
+          "package_name": "com.example.baliapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364565532230-5kf0pov8prifqnkbrbp2uic9gq78njkc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB0doFJB7BVdpnjS4C6VCr2TW9y476WTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364565532230-5kf0pov8prifqnkbrbp2uic9gq78njkc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

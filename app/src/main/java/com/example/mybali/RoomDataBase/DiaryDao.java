@@ -24,10 +24,10 @@ public interface DiaryDao {
     @Delete
     void deleteData(Diary diaries);
     //清空
-    @Query("DELETE FROM DiaryTable")
+    @Query("DELETE FROM " + tableName)
     void deleteAllScore();
     //撈取全部資料
-    @Query("SELECT * FROM DiaryTable")
+    @Query("SELECT * FROM " + tableName)
     List<Diary> displayAll();
 
 }

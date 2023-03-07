@@ -1,28 +1,36 @@
 package com.example.mybali;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.mybali.RoomDataBase.Diary;
+import com.example.mybali.RoomDataBase.DiaryDatabase;
 import com.facebook.stetho.Stetho;
+
+import java.util.List;
 
 public class DiaryActivity extends AppCompatActivity {
 
 
-//    DiaryAdapter diaryAdapter;
-//    Diary nowSelectData; //取得畫面上顯示中的資料內容
-
+    DiaryAdapter diaryAdapter;
+    Diary nowSelectData; //取得畫面上顯示中的資料內容
 
     Button btn_create_diary;
-    ListView diaryListView;
+    TextView titleOutput,descriptionOutput,timeOutput;
+    RecyclerView recyclerView;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,13 +39,41 @@ public class DiaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_diary);
 
         btn_create_diary = findViewById(R.id.add_diary_button);
-        diaryListView = findViewById(R.id.recyclerView);
+        titleOutput = findViewById(R.id.titleoutput);
+        descriptionOutput = findViewById(R.id.descriptionoutput);
+        timeOutput = findViewById(R.id.timeoutput);
 
-//        DiaryAdapter diaryAdapter = new DiaryAdapter();
-//        diaryListView.setAdapter(diaryAdapter);
+        //recyclerView設置
+        recyclerView = findViewById(R.id.recyclerView);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));//設置分隔線
 
         setListener();
 
+        //=============================初始化recyclerView==========================================//
+        new Thread(()->{
+            Log.d(null, "I'm here");
+            List<Diary> diaries = DiaryDatabase.getInstance(this).getDiaryDao().displayAll();
+            String testStr = TextUtils.join(",", diaries);
+            Log.d("TAG", testStr);
+            diaryAdapter = new DiaryAdapter(this,diaries);
+            runOnUiThread(()->{
+                recyclerView.setAdapter(diaryAdapter);
+
+                diaryAdapter.setOnItemClickListener(new DiaryAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Diary diary) {}
+                });
+
+                //取得被選中的資料，並顯示於畫面*/
+                diaryAdapter.setOnItemClickListener((diary)-> {//匿名函式(原貌在上方)
+                    nowSelectData = diary;
+                    titleOutput.setText(diary.getTitle());
+                    descriptionOutput.setText(diary.getDescription());
+                    timeOutput.setText((int) diary.getCreatedTime());
+                });
+            });
+        }).start();
     }
 
     private void setListener(){
@@ -50,14 +86,5 @@ public class DiaryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        diaryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?>parent, View view, int position, long id) {
-////                Diary diary = (Diary)diaryListView.getItemAtPosition(position);
-////                Intent intent = new Intent();
-////                intent.setClass(DiaryActivity.this,diary);
-////                startActivity(intent);
-//            }
-//        });
     }
 }
