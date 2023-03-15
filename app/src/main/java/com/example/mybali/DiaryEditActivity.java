@@ -19,6 +19,7 @@ public class DiaryEditActivity extends AppCompatActivity {
     private EditText titleInput,descriptionInput;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,10 @@ public class DiaryEditActivity extends AppCompatActivity {
                     descriptionInput.setText("");
                 });
                 //================================================================================//
+
+
+
+
                 Intent intent = new Intent();
                 intent.setClass(DiaryEditActivity.this,DiaryActivity.class);
                 startActivity(intent);

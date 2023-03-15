@@ -107,7 +107,7 @@ public class ApptimeActivity extends AppCompatActivity {
         for (UsageStats usageStats : usageStatsList) {
             try {
                 String packageName = usageStats.getPackageName();
-                Drawable icon = getDrawable(R.drawable.ic_launcher);
+                Drawable icon = getDrawable(R.mipmap.ic_launcher);
                 String[] packageNames = packageName.split("\\.");
                 String appName = packageNames[packageNames.length-1].trim();
 
